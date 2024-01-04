@@ -1,0 +1,9 @@
+{
+    "name": "AllUnlockedPorted",
+    "version_number": "1.0.0",
+    "website_url": "https://github.com/wallacebean/AllUnlockedPorted",
+    "description": "A mod that unlocks everything",
+    "dependencies": [
+    "BepInEx-BepInExPack_LLBlaze-5.4.1900"
+    ]
+}
