@@ -26,7 +26,7 @@ using LLBML.Networking;
 
 namespace StageBlocks
 {
-    [BepInPlugin("us.wallace.plugins.llb.stageBlocksPorted", "stageBlocksPorted Plug-In", "1.0.2")]
+    [BepInPlugin("us.wallace.plugins.llb.stageBlocksPorted", "StageBlocks", "1.0.3")]
     [BepInDependency(LLBML.PluginInfos.PLUGIN_ID, BepInDependency.DependencyFlags.HardDependency)]
     [BepInDependency("no.mrgentle.plugins.llb.modmenu", BepInDependency.DependencyFlags.SoftDependency)]
     [BepInProcess("LLBlaze.exe")]
@@ -115,6 +115,11 @@ namespace StageBlocks
         private static readonly Dictionary<Stage, string> allStagesMapping = StringUtils.regularStagesNames.Union(StringUtils.retroStagesNames).ToDictionary(x => x.Key, x => x.Value);
         public void WriteConfig(TextWriter writer, Dictionary<Stage, List<Rect>> config)
         {
+            writer.WriteLine("# The format is <stage name>: <pos x>, <pos y>, <size x> <size y>");
+            writer.WriteLine("# One block per line, '#' is a comment line.");
+            writer.WriteLine("# stage xy origin is bottom center of the stage");
+            writer.WriteLine("# block xy origin is bottom left of the block");
+            writer.WriteLine("# Refer to readme for stage names (case sensitive)");
             foreach (Stage stage in config.Keys)
             {
                 foreach (Rect box in config[stage])
@@ -128,10 +133,14 @@ namespace StageBlocks
         public void ReadConfig(TextReader reader, Dictionary<Stage, List<Rect>> config)
         {
             config.Clear();
-            while( reader.Peek() >= 0)
+            while (reader.Peek() >= 0)
             {
                 string line = reader.ReadLine();
-                string[] splits = line.Replace(" ", "").Split(new char[] { ',', ':' });
+                if (line[0] == '#')
+                {
+                    continue;
+                }
+                string[] splits = line.Split(new char[] { ',', ':' });
                 Stage stage = reverseStageMapping[splits[0]];
                 if (!config.ContainsKey(stage))
                 {
