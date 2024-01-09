@@ -26,7 +26,7 @@ using LLBML.Networking;
 
 namespace StageBlocks
 {
-    [BepInPlugin("us.wallace.plugins.llb.stageBlocksPorted", "stageBlocksPorted Plug-In", "1.0.1.0")]
+    [BepInPlugin("us.wallace.plugins.llb.stageBlocksPorted", "stageBlocksPorted Plug-In", "1.0.2")]
     [BepInDependency(LLBML.PluginInfos.PLUGIN_ID, BepInDependency.DependencyFlags.HardDependency)]
     [BepInDependency("no.mrgentle.plugins.llb.modmenu", BepInDependency.DependencyFlags.SoftDependency)]
     [BepInProcess("LLBlaze.exe")]
