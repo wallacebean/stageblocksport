@@ -8,7 +8,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>StageBlocks</RootNamespace>
-    <AssemblyName>stageBlocksPorted</AssemblyName>
+    <AssemblyName>StageBlocks</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -24,7 +24,6 @@
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
@@ -51,10 +50,6 @@
       <HintPath>libs\LLBModdingLib.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="ModMenu">
-      <HintPath>libs\ModMenu.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
     <Reference Include="UnityEngine.AnimationModule">
       <HintPath>libs\UnityEngine.AnimationModule.dll</HintPath>
       <Private>False</Private>
@@ -70,7 +65,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="StageBlocks.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PluginInfos.cs" />
+    <Compile Include="HarmonyPatches.cs" />
+    <Compile Include="StageBlock.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
