@@ -57,7 +57,7 @@ namespace StageBlocks
     {
         [HarmonyPatch(typeof(World), nameof(World.SetStageDimensions))]
         [HarmonyPostfix]
-        public static void SetStageDimensions_Prefix(World __instance)
+        public static void SetStageDimensions_Postfix(World __instance)
         {
             if (StageBlocks.customStageBlocks.Value && !__instance.useStageBlocks)
             {
@@ -71,13 +71,25 @@ namespace StageBlocks
                         blockGameObject.transform.rotation = Quaternion.identity;
                         blockGameObject.transform.position = new Vector3((Floatf)box.center.x * World.FPIXEL_SIZE, (Floatf)box.center.y * World.FPIXEL_SIZE);
                         blockGameObject.transform.localScale = new Vector3((Floatf)box.size.x * World.FPIXEL_SIZE, (Floatf)box.size.y * World.FPIXEL_SIZE, 1f);
-                        blockGameObject.GetComponent<Renderer>().material.color = stageBlock.color;
+                        Renderer blockRenderer = blockGameObject.GetComponent<Renderer>();
+                        blockRenderer.material.color = stageBlock.color;
+                        blockRenderer.material.EnableKeyword("_EMISSION");
+                        blockRenderer.material.SetColor("_EmissionColor", stageBlock.color * ((float)stageBlock.emission / StageBlock.emissionMultiplier ));
                         __instance.stageBlockList.Add(new Boundsf(new Vector2f(box.center.x, box.center.y) * World.FPIXEL_SIZE, new Vector2f(box.size.x, box.size.y) * World.FPIXEL_SIZE));
                     }
                 }
             }
             return;
         }
+        /*
+        [HarmonyPatch(typeof(World), nameof(World.Init1))]
+        [HarmonyPrefix]
+        public static bool Init1_Prefix(World __instance)
+        {
+            __instance.useStageBlocks = true;
+            return true;
+        }
+        */
     }
 
 
