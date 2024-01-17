@@ -18,6 +18,6 @@ namespace StageBlocks
     {
         public const string PLUGIN_NAME = "StageBlocks";
         public const string PLUGIN_ID = "us.wallace.plugins.llb.stageblocks";
-        public const string PLUGIN_VERSION = "1.0.4";
+        public const string PLUGIN_VERSION = "1.0.5";
     }
 }

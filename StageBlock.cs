@@ -18,7 +18,7 @@ namespace StageBlocks
             this.color = color ?? Color.clear;
             this.emission = Convert.ToByte(this.color.a * 255f);
             this.color.a = 1f;
-            StageBlocks.Log.LogDebug("Constructed: " + this);
+            //StageBlocks.Log.LogDebug("Constructed: " + this);
         }
         public static implicit operator StageBlock(Rect a) => new StageBlock(a);
 
@@ -33,7 +33,7 @@ namespace StageBlocks
         }
         public static StageBlock FromString(string data)
         {
-            StageBlocks.Log.LogDebug("Load from string: " + data);
+            //StageBlocks.Log.LogDebug("Load from string: " + data);
             string[] splits = data.Split(';');
             string[] boxStrings = splits[0].Split(',');
             Rect box = new Rect(
